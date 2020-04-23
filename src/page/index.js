@@ -31,13 +31,12 @@ class Page extends React.Component {
         let timers = [];
         for (let i = 0; i < this.state.dates.length; i++) {
             timers.push(
-                <Timer date={this.state.dates[i]} removeTimer={() => {
-                    console.log("before------------" + this.state.dates);
-                    this.state.dates.splice(i, 1);
+                <Timer date={this.state.dates[i]} key={this.state.dates[i].getTime()} removeTimer={() => {
+                    let temp = this.state.dates.slice();
+                    temp.splice(i,1);
                     this.setState({
-                        dates: this.state.dates
+                        dates: temp
                     });
-                    console.log("after-----------" + this.state.dates);
                 }}/>
             )
         }
